@@ -1,45 +1,70 @@
 "use client";
-
 import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="h-screen flex flex-col justify-center items-center text-center px-6 relative bg-white">
+    <section className="relative h-screen w-full bg-(--brand-black) overflow-hidden flex items-end md:items-center">
+      
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
+        style={{ backgroundImage: "url('/hero-bg.jpg')" }} 
+      />
+      <div className="absolute inset-0 bg-black/40" />
 
-      <motion.h1
-        initial={{ opacity: 0, y: 80 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-5xl md:text-7xl font-bold bg-linear-to-r 
-        from-(--brand-red) 
-        via-(--brand-gold) 
-        to-(--brand-blue) 
-        bg-clip-text text-transparent"
-      >
-        Filipino Dragons (Singapore)
-      </motion.h1>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pb-20 md:pb-0">
+        
+        <div className="max-w-3xl">
+          
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: "100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="h-2 bg-(--brand-gold) mb-6"
+          />
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 1 }}
-        className="mt-6 text-lg md:text-2xl text-gray-600 max-w-2xl"
-      >
-        Power. Unity. Excellence on the Water.
-      </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="text-6xl md:text-8xl font-black text-white uppercase leading-[0.9] tracking-tighter"
+            style={{ fontFamily: "Arial, sans-serif" }}
+          >
+            Filipino <br />
+            <span className="text-transparent" style={{ WebkitTextStroke: "2px #F4C430" }}>Dragons</span> <br />
+            Singapore
+          </motion.h1>
 
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="mt-10 px-8 py-4 rounded-full 
-        bg-(--brand-red) 
-        hover:bg-(--brand-blue) 
-        transition duration-300 
-        text-white font-semibold shadow-lg"
-      >
-        Join the Team
-      </motion.button>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-8 inline-block bg-(--brand-red) text-white px-6 py-3 text-lg md:text-xl font-bold uppercase tracking-widest"
+          >
+            Brave, not reckless. Bold, not arrogant.
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-10 flex flex-col sm:flex-row gap-4"
+          >
+            <a href="#join" className="px-8 py-4 bg-(--brand-gold) text-black font-black uppercase tracking-wider hover:bg-white transition-colors text-center border-2 border-(--brand-gold) hover:border-white">
+              Get in the Boat
+            </a>
+            <a href="#about" className="px-8 py-4 bg-transparent text-white font-black uppercase tracking-wider border-2 border-white hover:bg-white hover:text-black transition-colors text-center">
+              Our Story
+            </a>
+          </motion.div>
+
+        </div>
+      </div>
+
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="block w-full h-12 md:h-24" style={{ transform: "rotate(180deg)" }}>
+          <path d="M1200 120L0 16.48V0h1200v120z" className="fill-white" />
+        </svg>
+      </div>
 
     </section>
   );
