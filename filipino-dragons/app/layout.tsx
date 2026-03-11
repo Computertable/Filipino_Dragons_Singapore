@@ -2,7 +2,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata = {
-  title: "Filipino Dragons Singapore",
+  title: "Filipino Dragons (Singapore)",
   description: "Power. Unity. Excellence on the Water.",
 };
 

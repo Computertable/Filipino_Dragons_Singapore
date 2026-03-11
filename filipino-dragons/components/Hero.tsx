@@ -16,7 +16,7 @@ export default function Hero() {
         to-(--brand-blue) 
         bg-clip-text text-transparent"
       >
-        Filipino Dragons Singapore
+        Filipino Dragons (Singapore)
       </motion.h1>
 
       <motion.p
