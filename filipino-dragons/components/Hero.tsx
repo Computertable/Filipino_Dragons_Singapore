@@ -30,7 +30,7 @@ export default function Hero() {
             style={{ fontFamily: "Arial, sans-serif" }}
           >
             Filipino <br />
-            <span className="text-transparent" style={{ WebkitTextStroke: "2px #F4C430" }}>Dragons</span> <br />
+            <span className="text-transparent tracking-normal" style={{ WebkitTextStroke: "2px #F4C430" }}>Dragons</span> <br />
             Singapore
           </motion.h1>
 
@@ -40,7 +40,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-8 inline-block bg-(--brand-red) text-white px-6 py-3 text-lg md:text-xl font-bold uppercase tracking-widest"
           >
-            Brave, not reckless. Bold, not arrogant.
+            Undaunted. Unbreakable. Unstoppable.
           </motion.div>
 
           <motion.div 
