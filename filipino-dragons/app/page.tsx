@@ -9,6 +9,7 @@ export default function Home() {
       <Navbar />
       <Hero />
 
+      {/* TO CHECK IF NEEDED OR WE CAN PUT MEDIA??? */}
       <ParallaxSection />
 
       <Section
@@ -17,17 +18,21 @@ export default function Home() {
         description="Filipino Dragons Singapore is a competitive dragon boat team built on discipline, culture, and unity."
       />
 
+      {/* TEAM INFO */}
       <Section
         id="team"
         title="Train Like Warriors"
         description="Weekly training sessions across Singapore waters."
       />
 
+      {/* SPONSORS and AFFILIATES */}
       <Section
         id="join"
-        title="Join the Movement"
-        description="Become part of the Filipino Dragons family."
+        title="Our Team Sponsors"
+        description="Support the Filipino Dragons and help us continue our journey."
       />
+
+      {/* SOCIALS and LOCATION */}
     </main>
   );
 }
