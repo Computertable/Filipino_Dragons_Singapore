@@ -1,5 +1,6 @@
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { moderniz, montserrat} from './fonts';
 
 export const metadata = {
   title: "Filipino Dragons Singapore",
@@ -12,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={`${moderniz.variable} ${montserrat.variable}`}>
+      <body className="font-montserrat">
         <SmoothScroll>
           {children}
         </SmoothScroll>
