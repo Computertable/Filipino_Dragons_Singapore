@@ -21,7 +21,7 @@ export default function ParallaxSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen bg-white text-(--brand-black) overflow-hidden py-24 flex flex-col justify-center"
+      className="relative min-h-screen bg-white text-(--brand-black) overflow-hidden py-28 flex flex-col justify-center"
     >
       <motion.div 
         style={{ y: y3 }}

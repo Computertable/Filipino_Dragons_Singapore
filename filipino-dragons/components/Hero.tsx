@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full bg-(--brand-black) overflow-hidden flex items-end md:items-center">
-      {/* Background Image */}
+    <section className="relative h-screen w-full bg-(--brand-black) overflow-hidden flex items-center">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
         style={{ backgroundImage: "url('/hero-bg.jpg')" }}
@@ -13,7 +12,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
 
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pb-24 md:pb-0">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-20 md:pb-0">
         <div className="max-w-3xl">
           <motion.div
             initial={{ width: 0 }}

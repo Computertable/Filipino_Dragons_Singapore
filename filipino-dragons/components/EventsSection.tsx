@@ -58,8 +58,8 @@ export default function EventsSection() {
     <section className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
         <div>
-          <h2 className="font-moderniz text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-            The <span className="text-(--brand-red)">Arena.</span>
+          <h2 className="font-moderniz text-2xl md:text-4xl font-black uppercase tracking-tighter leading-none">
+            Events & <span className="text-(--brand-red)">Challenges.</span>
           </h2>
           <p className="font-montserrat text-neutral-500 font-bold uppercase tracking-widest text-xl mt-4">
             Our history written in salt and sweat.

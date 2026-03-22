@@ -4,14 +4,19 @@ import Section from "@/components/Section";
 import ParallaxSection from "@/components/ParallaxSection";
 import SponsorSection from "@/components/Sponsors"
 import EventsSection from "@/components/EventsSection";
+import VideoSection from "@/components/Video";
+import Footer from "@/components/Footer";
+import TrainingSection from "@/components/WhyJoinUs";
+import JoinBreaker from "@/components/JoinBreaker";
 
 export default function Home() {
   return (
     <main>
       <Navbar />
       <Hero />
-
+      <VideoSection/>
       <ParallaxSection />
+      <TrainingSection />
       <EventsSection/>
       {/* <Section
         id="about"
@@ -30,8 +35,9 @@ export default function Home() {
         title="Join the Movement"
         description="Become part of the Filipino Dragons family."
       /> */}
-
+      <JoinBreaker/>
       <SponsorSection/>
+      <Footer/>
     </main>
   );
 }
