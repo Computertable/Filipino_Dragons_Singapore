@@ -4,7 +4,7 @@ import { Instagram, Facebook, Mail, MapPin, Youtube } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="relative bg-(--brand-black) pt-24 pb-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
           
           <div className="flex flex-col gap-4">
@@ -14,12 +14,9 @@ export default function Footer() {
                 Dragons
               </span> <br />
             <span className="font-moderniz text-4xl md:text-5xl uppercase leading-none tracking-tighter text-white">
-                Singapore
+                (Singapore)
             </span>
             </h2>
-            <p className="font-montserrat text-neutral-400 text-sm max-w-xs leading-relaxed mt-2">
-              Undaunted. Unwavered. Unstoppable. <br />
-            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-8">
@@ -28,9 +25,9 @@ export default function Footer() {
                 Navigate
               </h4>
               <ul className="font-montserrat text-sm space-y-4 text-neutral-300 uppercase font-medium">
-                <li><a href="#" className="hover:text-(--brand-red) transition-colors">Home</a></li>
-                <li><a href="#" className="hover:text-(--brand-red) transition-colors">The Arena</a></li>
-                <li><a href="#" className="hover:text-(--brand-red) transition-colors">Our Story</a></li>
+                <li><a href="#" className="hover:text-(--brand-gold) transition-colors">Home</a></li>
+                <li><a href="#" className="hover:text-(--brand-gold) transition-colors">The Arena</a></li>
+                <li><a href="#" className="hover:text-(--brand-gold) transition-colors">Our Story</a></li>
               </ul>
             </div>
             <div>
@@ -38,8 +35,8 @@ export default function Footer() {
                 Action
               </h4>
               <ul className="font-montserrat text-sm space-y-4 text-neutral-300 uppercase font-medium">
-                <li><a href="#" className="hover:text-(--brand-red) transition-colors">Join Us</a></li>
-                <li><a href="#" className="hover:text-(--brand-red) transition-colors">Sponsors</a></li>
+                <li><a href="#" className="hover:text-(--brand-gold) transition-colors">Join Us</a></li>
+                <li><a href="#" className="hover:text-(--brand-gold) transition-colors">Sponsors</a></li>
               </ul>
             </div>
           </div>
@@ -71,7 +68,7 @@ export default function Footer() {
           <p className="font-montserrat text-[10px] text-neutral-500 uppercase tracking-[0.2em]">
             © 2026 Filipino Dragons Singapore. Built for the water.
           </p>
-          <div className="h-1 w-20 bg-(--brand-red)" /> {/* Visual tie to Hero's gold line, but in red */}
+          <div className="h-1 w-20 bg-(--brand-red)" /> {/* Visual tie to Hero's gold line, but in blue */}
         </div>
       </div>
     </footer>

@@ -1,26 +1,45 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const logoSrc = isScrolled ? "/FDSLogo.png" : "/FDS_Logo_Text.png";
+  const logoClassName = isScrolled 
+    ? "h-12 md:h-16 w-auto object-contain drop-shadow-md cursor-pointer hover:scale-105 transition-transform"
+    : "h-20 md:h-20 w-auto object-contain drop-shadow-md cursor-pointer hover:scale-105 transition-transform";
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="mx-auto flex items-center justify-between">
         
        <div className="flex-1 flex justify-start">
-           <motion.img 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              src="/FDSLogo.png" 
-              alt="FDS Logo"
-              className="h-12 md:h-16 w-auto object-contain drop-shadow-md cursor-pointer hover:scale-105 transition-transform"
-            />
-        </div>
+           <AnimatePresence mode="wait">
+             <motion.img 
+                key={logoSrc}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                src={logoSrc}
+                alt="FDS Logo"
+                className={logoClassName}
+              />
+           </AnimatePresence>
+          </div>
 
-        <div className="hidden md:flex items-center space-x-8 px-8 py-3 rounded-full bg-black/20 backdrop-blur-lg border border-white/10 text-sm font-medium text-white shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
-          <a href="#home" className="hover:text-(--brand-gold) transition-colors duration-200">
-            Home
-          </a>
-          <a href="#ibm" className="hover:text-(--brand-gold) transition-colors duration-200">
+          <div className="hidden md:flex items-center space-x-8 px-8 py-3 rounded-full bg-black/20 backdrop-blur-lg border border-white/10 text-sm font-medium text-white shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+            <a href="#ibm" className="hover:text-(--brand-gold) transition-colors duration-200">
             Events
           </a>
           <a href="#about" className="hover:text-(--brand-gold) transition-colors duration-200">

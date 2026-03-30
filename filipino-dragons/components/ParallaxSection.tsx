@@ -57,8 +57,9 @@ export default function ParallaxSection() {
             className="md:col-span-8 flex flex-col gap-6"
           >
             <h2 className="font-moderniz text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-              <span className="text-(--brand-red)">Tough,</span> <br />
-              Not Scary.
+              <span className="text-(--brand-blue)">UNDAUNTED</span> <br />
+              <span className="text-(--brand-gold)">UNWAVERED</span> <br />
+              <span className="text-(--brand-red)">UNSTOPPABLE</span>
             </h2>
             
             <p className="font-montserrat text-xl md:text-3xl font-thin uppercase tracking-tight text-neutral-800 max-w-2xl mt-4">
@@ -71,7 +72,7 @@ export default function ParallaxSection() {
 
           <motion.div 
             style={{ y: y2 }}
-            className="md:col-span-4 border-l-4 border-(--brand-red) pl-6 flex flex-col gap-4"
+            className="md:col-span-4 border-l-4 border-(--brand-blue) pl-6 flex flex-col gap-4"
           >
             <p className="font-moderniz text-lg md:text-xl font-black uppercase leading-tight tracking-tighter">
               Brave, but not reckless. <br />

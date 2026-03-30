@@ -22,7 +22,7 @@ export default function JoinBreaker() {
             className="text-center md:text-left"
           >
             <h2 className="font-moderniz text-3xl md:text-5xl text-white uppercase leading-none tracking-tighter">
-              The Boat is <span className="text-black/30">Never Full</span>
+              The Boat is <span className="text-(--brand-gold)">Never Full</span>
             </h2>
             <p className="mt-2 font-montserrat text-white/80 text-sm md:text-base font-medium uppercase tracking-widest">
               Your seat is waiting. Join the crew today.
@@ -37,7 +37,7 @@ export default function JoinBreaker() {
             <a 
               href="https://wa.me/YOUR_PHONE_NUMBER"
               target="_blank"
-              className="group flex items-center gap-4 px-8 py-4 bg-white text-(--brand-red) font-montserrat font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-300 shadow-xl active:scale-95"
+              className="group flex items-center gap-4 px-8 py-4 bg-white text-(--brand-red) font-montserrat font-black uppercase tracking-widest hover:bg-(--brand-gold) hover:text-black transition-all duration-300 shadow-xl active:scale-95"
             >
               Recruit Me
               <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
