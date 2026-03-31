@@ -50,15 +50,37 @@ const RACE_DATA = [
   }
 ];
 
-// const API_URL = "https://filipinodragons.org.sg/wp-json/wp/v2";
-
 export default function EventsSection() {
+ const [events, setEvents] = useState<any[]>([]);
 
-  // useEffect(() => {
-  //   fetch(`${API_URL}/events`)
-  //     .then(res => res.json())
-  //     .then(data => console.log(data));
-  // }, []);
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("https://filipinodragons.org.sg/wp-json/wp/v2/events");
+      const eventsData = await res.json();
+
+      console.log("Events Data:", eventsData);
+
+      const eventsWithImages = await Promise.all(
+        eventsData.map(async (event: any) => {
+          const mediaRes = await fetch(
+            `https://filipinodragons.org.sg/wp-json/wp/v2/media?parent=${event.id}`
+          );
+          const media = await mediaRes.json();
+          
+          console.log("Images for event:", media);
+
+          return {
+            ...event,
+            images: media
+          };
+        })
+      );
+
+      setEvents(eventsWithImages);
+    }
+
+    fetchData();
+  }, []);
 
   const [activeGallery, setActiveGallery] = useState<Race | null>(null);
   const scrollRef = useRef(null);
