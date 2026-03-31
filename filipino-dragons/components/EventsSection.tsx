@@ -14,6 +14,17 @@ interface Race {
 
 const RACE_DATA = [
   {
+    id: "unang-sagwan-2026",
+    title: "Unang Sagwan",
+    subtitle: "Season Opener",
+    coverImage: "/events/unang-sagwan/UnangSagwan_1.jpg",
+    photos: [
+      "/events/unang-sagwan/UnangSagwan_1.jpg",
+      "/events/unang-sagwan/UnangSagwan_2.jpg",
+      "/events/unang-sagwan/UnangSagwan_3.jpg"
+    ],
+  },
+  {
     id: "tampines-2026",
     title: "Tampines 2026",
     subtitle: "Regional Sprint",
@@ -36,17 +47,6 @@ const RACE_DATA = [
       "/races/century_2026/century_4.jpg",
       "/races/century_2026/century_5.jpg",
     ],
-  },
-  {
-    id: "unang-sagwan-2026",
-    title: "Unang Sagwan",
-    subtitle: "Season Opener",
-    coverImage: "/events/unang-sagwan/UnangSagwan_1.jpg",
-    photos: [
-      "/events/unang-sagwan/UnangSagwan_1.jpg",
-      "/events/unang-sagwan/UnangSagwan_2.jpg",
-      "/events/unang-sagwan/UnangSagwan_3.jpg"
-    ],
   }
 ];
 
@@ -68,7 +68,7 @@ export default function EventsSection() {
       <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
         <div>
           <h2 className="font-moderniz text-2xl md:text-4xl font-black uppercase tracking-tighter leading-none">
-            Events & <span className="text-(--brand-red)">Challenges.</span>
+            Events & <span className="text-(--brand-blue)">Challenges.</span>
           </h2>
           <p className="font-montserrat text-neutral-500 font-bold uppercase tracking-widest text-xl mt-4">
             Our history written in salt and sweat.
@@ -131,20 +131,22 @@ export default function EventsSection() {
             </button>
 
             <div className="flex-1 overflow-y-auto p-12">
-              <h2 className="text-white text-5xl font-black uppercase mb-12 text-center">
-                {activeGallery.title}
-              </h2>
-              <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-                {activeGallery.photos.map((url, i) => (
-                  <motion.img
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    src={url}
-                    className="w-full h-auto rounded-xl"
-                  />
-                ))}
+              <div className="max-w-6xl mx-auto">
+                <h2 className="text-white text-5xl font-black uppercase mb-12 text-center">
+                  {activeGallery.title}
+                </h2>
+                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+                  {activeGallery.photos.map((url, i) => (
+                    <motion.img
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      src={url}
+                      className="w-full h-auto rounded-xl"
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>

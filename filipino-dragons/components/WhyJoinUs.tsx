@@ -7,10 +7,10 @@ const TRAINING_SESSIONS = [
   {
     id: 1,
     title: "Ground Protocol",
-    days: "Tuesday",
+    days: "Tuesday & Thursday",
     type: "Land Training",
     description: "Strength and conditioning designed for explosive power in the boat.",
-    image: "/lightRox.png",
+    image: "/LandTraining.webp",
     tag: "Power",
   },
   {
@@ -19,7 +19,7 @@ const TRAINING_SESSIONS = [
     days: "Wednesday",
     type: "Run Club",
     description: "Building the engine. High-intensity cardio to outlast the competition.",
-    image: "/runClub.png",
+    image: "/WednesdayRun.webp",
     tag: "Stamina",
   },
   {
@@ -28,7 +28,7 @@ const TRAINING_SESSIONS = [
     days: "Saturday & Sunday",
     type: "Boat Training",
     description: "The main arena. Technical precision and synchronization on the water.",
-    image: "/waterTraining.png",
+    image: "/WaterTraining.webp",
     tag: "Technical",
   }
 ];
@@ -72,7 +72,7 @@ export default function TrainingSection() {
                 Training Schedule
             </span>
             <h2 className="text-5xl font-moderniz uppercase leading-[0.9] tracking-tighter mb-8">
-                Why Join <br /><span className="text-(--brand-red)">The Crew?</span>
+                Why Join <br /><span className="text-(--brand-blue)">The Crew?</span>
             </h2>
             <p className="font-montserrat text-neutral-600 mb-10 leading-relaxed">
                 Our structured weekly training keeps every paddler in peak condition and race ready, building strength, discipline, and an unstoppable mindset.
@@ -82,7 +82,7 @@ export default function TrainingSection() {
               <button onClick={() => paginate(-1)} className="p-5 border border-black/10 rounded-full hover:bg-black hover:text-white transition-all active:scale-90">
                 <ArrowLeft size={24} />
               </button>
-              <button onClick={() => paginate(1)} className="p-5 bg-black text-white rounded-full hover:bg-(--brand-red) transition-all active:scale-90 shadow-xl shadow-black/20">
+              <button onClick={() => paginate(1)} className="p-5 bg-black text-white rounded-full hover:bg-(--brand-blue) transition-all active:scale-90 shadow-xl shadow-black/20">
                 <ArrowRight size={24} />
               </button>
             </div>
@@ -116,7 +116,7 @@ export default function TrainingSection() {
                       </div>
                     </div>
                     <div className="px-2">
-                      <p className="font-montserrat font-bold text-(--brand-red) font-black uppercase text-[10px] tracking-[0.2em] mb-1">
+                      <p className="font-montserrat font-bold text-(--brand-blue) font-black uppercase text-[10px] tracking-[0.2em] mb-1">
                         {TRAINING_SESSIONS[activeIndex].type}
                       </p>
                       <h3 className="text-2xl font-moderniz font-medium tracking-tighter uppercase mb-2">

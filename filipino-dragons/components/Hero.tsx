@@ -33,17 +33,9 @@ export default function Hero() {
             >
               Dragons
             </span> <br />
-            Singapore
+            (Singapore)
           </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-6 inline-block bg-(--brand-red) text-white px-5 py-3 text-xs md:text-lg font-montserrat font-medium uppercase tracking-widest shadow-2xl"
-          >
-            Undaunted. Unwavered. Unstoppable.
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 15 }}
