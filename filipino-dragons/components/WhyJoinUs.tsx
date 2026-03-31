@@ -10,7 +10,7 @@ const TRAINING_SESSIONS = [
     days: "Tuesday & Thursday",
     type: "Land Training",
     description: "Strength and conditioning designed for explosive power in the boat.",
-    image: "/lightRox.png",
+    image: "/LandTraining.webp",
     tag: "Power",
   },
   {
@@ -19,7 +19,7 @@ const TRAINING_SESSIONS = [
     days: "Wednesday",
     type: "Run Club",
     description: "Building the engine. High-intensity cardio to outlast the competition.",
-    image: "/runClub.png",
+    image: "/WednesdayRun.webp",
     tag: "Stamina",
   },
   {
@@ -28,7 +28,7 @@ const TRAINING_SESSIONS = [
     days: "Saturday & Sunday",
     type: "Boat Training",
     description: "The main arena. Technical precision and synchronization on the water.",
-    image: "/waterTraining.png",
+    image: "/WaterTraining.webp",
     tag: "Technical",
   }
 ];
