@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { X, ChevronRight, ChevronLeft, Plus } from "lucide-react";
+import { X, Plus } from "lucide-react";
 
 interface Race {
   id: string;
@@ -12,66 +12,51 @@ interface Race {
   photos: string[];
 }
 
-const RACE_DATA = [
-  {
-    id: "unang-sagwan-2026",
-    title: "Unang Sagwan",
-    subtitle: "Season Opener",
-    coverImage: "/events/unang-sagwan/UnangSagwan_1.jpg",
-    photos: [
-      "/events/unang-sagwan/UnangSagwan_1.jpg",
-      "/events/unang-sagwan/UnangSagwan_2.jpg",
-      "/events/unang-sagwan/UnangSagwan_3.jpg"
-    ],
-  },
-  {
-    id: "tampines-2026",
-    title: "Tampines 2026",
-    subtitle: "Regional Sprint",
-    coverImage: "/races/tampines/tampines_1.webp",
-    photos: [
-      "/races/tampines/tampines_1.webp",
-      "/races/tampines/tampines_2.webp",
-      "/races/tampines/tampines_3.webp",
-    ],
-  },
-  {
-    id: "century-2026",
-    title: "Century 2026",
-    subtitle: "Regional Sprint",
-    coverImage: "/races/century_2026/century_1.jpg",
-    photos: [
-      "/races/century_2026/century_1.jpg",
-      "/races/century_2026/century_2.jpg",
-      "/races/century_2026/century_3.jpg",
-      "/races/century_2026/century_4.jpg",
-      "/races/century_2026/century_5.jpg",
-    ],
-  }
-];
-
 export default function EventsSection() {
- const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<Race[]>([]);
+  const [activeGallery, setActiveGallery] = useState<Race | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
+  //Fetch WP Data
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("https://filipinodragons.org.sg/wp-json/wp/v2/events");
+      const res = await fetch(
+        "https://filipinodragons.org.sg/wp-json/wp/v2/events"
+      );
       const eventsData = await res.json();
 
-      console.log("Events Data:", eventsData);
+      const parser = new DOMParser();
 
-      const eventsWithImages = await Promise.all(
+      const eventsWithImages: Race[] = await Promise.all(
         eventsData.map(async (event: any) => {
           const mediaRes = await fetch(
             `https://filipinodragons.org.sg/wp-json/wp/v2/media?parent=${event.id}`
           );
           const media = await mediaRes.json();
-          
-          console.log("Images for event:", media);
+
+          // Parse HTML content
+          const doc = parser.parseFromString(
+            event.content.rendered,
+            "text/html"
+          );
+
+          // Extract tagline
+          const tagline =
+            doc.querySelector(".wp-block-site-tagline")?.textContent || "";
+
+          // Extract only gallery images (cleaner than media API)
+          const galleryImages = Array.from(
+            doc.querySelectorAll(".wp-block-gallery img")
+          ).map((img) => img.getAttribute("src") || "");
 
           return {
-            ...event,
-            images: media
+            id: event.slug,
+            title: event.title.rendered,
+            subtitle: tagline,
+            coverImage:
+              media?.[0]?.source_url ||
+              galleryImages[0],
+            photos: galleryImages.length ? galleryImages : media.map((m: any) => m.source_url),
           };
         })
       );
@@ -82,15 +67,44 @@ export default function EventsSection() {
     fetchData();
   }, []);
 
-  const [activeGallery, setActiveGallery] = useState<Race | null>(null);
-  const scrollRef = useRef(null);
+  //Prevent double scrollbar
+  useEffect(() => {
+    if (activeGallery) {
+      const scrollY = window.scrollY;
+
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+
+    } else {
+      const scrollY = document.body.style.top;
+
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      }
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+    };
+  }, [activeGallery]);
 
   return (
     <section className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
         <div>
           <h2 className="font-moderniz text-2xl md:text-4xl font-black uppercase tracking-tighter leading-none">
-            Events & <span className="text-(--brand-blue)">Challenges.</span>
+            Events &{" "}
+            <span className="text-(--brand-blue)">Challenges.</span>
           </h2>
           <p className="font-montserrat text-neutral-500 font-bold uppercase tracking-widest text-xl mt-4">
             Our history written in salt and sweat.
@@ -98,11 +112,12 @@ export default function EventsSection() {
         </div>
       </div>
 
+      {/* Horizontal Scroll */}
       <div
         ref={scrollRef}
         className="flex gap-6 overflow-x-auto px-[5vw] pb-12 no-scrollbar snap-x snap-proximity"
       >
-        {RACE_DATA.map((race) => (
+        {events.map((race) => (
           <motion.div
             key={race.id}
             onClick={() => setActiveGallery(race)}
@@ -137,6 +152,7 @@ export default function EventsSection() {
         ))}
       </div>
 
+      {/* Modal Gallery */}
       <AnimatePresence>
         {activeGallery && (
           <motion.div
@@ -152,18 +168,19 @@ export default function EventsSection() {
               <X size={40} />
             </button>
 
-            <div className="flex-1 overflow-y-auto p-12">
+            <div className="flex-1 overflow-y-auto overscroll-contain p-12">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-white text-5xl font-black uppercase mb-12 text-center">
                   {activeGallery.title}
                 </h2>
+
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
                   {activeGallery.photos.map((url, i) => (
                     <motion.img
                       key={i}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1 }}
+                      transition={{ delay: i * 0.05 }}
                       src={url}
                       className="w-full h-auto rounded-xl"
                     />
