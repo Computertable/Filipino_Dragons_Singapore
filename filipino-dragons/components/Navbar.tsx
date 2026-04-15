@@ -1,49 +1,48 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
+   const pathName = usePathname();
+  let isContactPage = pathName === "/contact";
+    useEffect(() => {
+      const handleScroll = () => {
+        setIsScrolled(window.scrollY > 100);
+      };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // const logoSrc = isScrolled ? "/FDSLogo.png" : "/FDS_Logo_Text.png";
-  const logoSrc = isScrolled ? "/FDSLogo.png" : "/FDS-horizontal-logo.png";
-
-  const logoClassName = isScrolled
-    ? "h-12 md:h-16 w-auto object-contain drop-shadow-md cursor-pointer transition-all duration-300"
-    : "h-10 md:h-14 w-auto object-contain drop-shadow-md cursor-pointer transition-all duration-300";
-
-    // const logoClassName = isScrolled
-    // ? "h-10 md:h-14 w-auto object-contain drop-shadow-md cursor-pointer transition-all duration-300"
-    // : "h-20 md:h-28 w-auto object-contain drop-shadow-md cursor-pointer transition-all duration-300";
-
+ const logoSrc = isContactPage && !isScrolled 
+    ? "/logos/fds_logo_blacktext.png" 
+    : isScrolled 
+      ? "/logos/FDSLogo.png" 
+      : "/logos/fds_logo_whiteText.png";
   return (
     <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6">
       <div className="mx-auto flex items-center justify-between">
 
         <div className="flex-1 flex justify-start">
-          <div className="h-16 md:h-20 flex items-center">
-            <AnimatePresence mode="wait">
+          <div className="h-14 md:h-12 flex items-center">
+            <a href="/" className="cursor-pointer">
+              <AnimatePresence mode="wait">
               <motion.img
                 key={logoSrc}
                 src={logoSrc}
                 alt="FDS Logo"
                 animate={{
-                  scale: isScrolled ? 0.8 : 1.2,
+                  scale: isScrolled ? 1 : 1.2,
                   opacity: 1
                 }}
                 transition={{ duration: 0.3 }}
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-10 md:h-12 w-auto object-contain"
               />
             </AnimatePresence>
+            </a>
+            
           </div>
         </div>
 
@@ -51,10 +50,10 @@ export default function Navbar() {
           <a href="#ibm" className="hover:text-(--brand-gold) transition-colors duration-200">
             Events
           </a>
-          <a href="#about" className="hover:text-(--brand-gold) transition-colors duration-200">
+          <a href="about" className="hover:text-(--brand-gold) transition-colors duration-200">
             About
           </a>
-          <a href="#contact" className="hover:text-(--brand-gold) transition-colors duration-200">
+          <a href="contact" className="hover:text-(--brand-gold) transition-colors duration-200">
             Contact
           </a>
         </div>

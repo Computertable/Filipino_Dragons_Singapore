@@ -99,7 +99,7 @@ export default function EventsSection() {
   }, [activeGallery]);
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section id="events" className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
         <div>
           <h2 className="font-moderniz text-2xl md:text-4xl font-black uppercase tracking-tighter leading-none">
