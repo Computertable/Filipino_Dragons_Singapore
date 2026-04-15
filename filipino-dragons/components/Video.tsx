@@ -27,13 +27,14 @@ export default function VideoSection() {
                     loop={true}
                     config={{
                         youtube: {
-                            controls: 0,
-                            modestbranding: 1,
-                            playsinline: 1,
-                            cc_load_policy: 0,
-                            iv_load_policy: 3,
-                            cc_lang_pref: 'en',
-                            hl: 'en',
+                           playerVars: { // Parameters should be inside playerVars
+                                controls: 0,
+                                modestbranding: 1,
+                                rel: 0,
+                                cc_load_policy: 0, 
+                                iv_load_policy: 3,
+                                playsinline: 1,
+                            }
                         } as any
                     }}
                 />

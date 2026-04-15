@@ -35,7 +35,7 @@ export default function JoinBreaker() {
             viewport={{ once: true }}
           >
             <a 
-              href="https://wa.me/YOUR_PHONE_NUMBER"
+              href="contact"
               target="_blank"
               className="group flex items-center gap-4 px-8 py-4 bg-white text-(--brand-red) font-montserrat font-black uppercase tracking-widest hover:bg-(--brand-gold) hover:text-black transition-all duration-300 shadow-xl active:scale-95"
             >
