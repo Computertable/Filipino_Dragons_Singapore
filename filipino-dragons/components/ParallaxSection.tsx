@@ -15,9 +15,8 @@ export default function ParallaxSection() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -180]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
-  const logoScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.8]);
-  const logoOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
+const logoOpacity = useTransform(scrollYProgress, [0.4, 0.505], [1, 0]);
+  const logoScale = useTransform(scrollYProgress, [0.4, 0.55], [1, 1.3]);
   return (
     <section
       ref={ref}
@@ -57,8 +56,9 @@ export default function ParallaxSection() {
             className="md:col-span-8 flex flex-col gap-6"
           >
             <h2 className="font-moderniz text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-              <span className="text-(--brand-red)">Tough,</span> <br />
-              Not Scary.
+              <span >UNDAUNTED.</span> <br />
+              <span className="text-(--brand-blue)">UNWAVERED.</span> <br />
+              <span>UNSTOPPABLE.</span>
             </h2>
             
             <p className="font-montserrat text-xl md:text-3xl font-thin uppercase tracking-tight text-neutral-800 max-w-2xl mt-4">
@@ -71,7 +71,7 @@ export default function ParallaxSection() {
 
           <motion.div 
             style={{ y: y2 }}
-            className="md:col-span-4 border-l-4 border-(--brand-red) pl-6 flex flex-col gap-4"
+            className="md:col-span-4 border-l-4 border-(--brand-black) pl-6 flex flex-col gap-4"
           >
             <p className="font-moderniz text-lg md:text-xl font-black uppercase leading-tight tracking-tighter">
               Brave, but not reckless. <br />

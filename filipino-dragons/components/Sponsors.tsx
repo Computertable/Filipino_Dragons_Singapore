@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 export default function SponsorSection() {
   const sponsors = [
     { name: "Hazonas", logo: "/logos/hazonas.png", link: "https://www.hazonas.com/" },
-    { name: "Al Capone's", logo: "/logos/alcapones.jpg", link: "https://alcaponesg.com/pages/locations" },
+    { name: "Al Capone's", logo: "/logos/alcapones.png", link: "https://alcaponesg.com/pages/locations" },
     { name: "Dot", logo: "/logos/dot.png", link: "https://www.facebook.com/dalaine.ong" },
   ];
 
   const affiliations = [
-    { name: "SDBA", logo: "/logos/SDBA.jpeg", link: "https://www.hazonas.com/" },
-    { name: "IDBF", logo: "/logos/IDBC.jpg", link: "https://alcaponesg.com/pages/locations" }
+    { name: "SDBA", logo: "/logos/SDBA.png", link: "https://www.hazonas.com/" },
+    { name: "IDBF", logo: "/logos/IDBC.png", link: "https://alcaponesg.com/pages/locations" }
   ];
 
   const LogoGrid = ({ items, title }: { items: any[], title: string }) => (

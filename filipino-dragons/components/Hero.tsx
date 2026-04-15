@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -33,17 +34,9 @@ export default function Hero() {
             >
               Dragons
             </span> <br />
-            Singapore
+            (Singapore)
           </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-6 inline-block bg-(--brand-red) text-white px-5 py-3 text-xs md:text-lg font-montserrat font-medium uppercase tracking-widest shadow-2xl"
-          >
-            Undaunted. Unwavered. Unstoppable.
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -51,14 +44,14 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-8 flex flex-col sm:flex-row gap-4"
           >
-            <a 
-              href="#join" 
+            <Link
+              href="/contact" 
               className="font-montserrat font-bold px-8 py-4 bg-(--brand-gold) text-black font-black uppercase tracking-wider hover:bg-white transition-all text-center border-2 border-(--brand-gold) hover:border-white active:scale-95"
             >
               Get in the Boat
-            </a>
+            </Link>
             <a 
-              href="#about" 
+              href="/about" 
               className="font-montserrat font-bold px-8 py-4 bg-transparent text-white font-black uppercase tracking-wider border-2 border-white/50 hover:border-white hover:bg-white hover:text-black transition-all text-center active:scale-95"
             >
               Our Story
