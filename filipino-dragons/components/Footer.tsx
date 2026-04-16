@@ -98,7 +98,7 @@ export default function Footer() {
               <ul className="font-montserrat text-xs space-y-5 text-neutral-400 uppercase font-bold tracking-widest">
                 <li><a href="/contact" className="hover:text-white">Join Trials</a></li>
                 <li><a href="/contact?type=sponsor" className="hover:text-white">Sponsorship</a></li>
-                <li><a href="#" className="hover:text-white">Merchandise</a></li>
+                <li><a href="/maintenance" className="hover:text-white">Merchandise</a></li>
               </ul>
             </div>
           </div>
