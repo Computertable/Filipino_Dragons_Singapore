@@ -27,7 +27,7 @@ export default function Navbar() {
 
   const logoSrc =
     isContactPage && !isScrolled
-      ? "/logos/fds_logo_blacktext.png"
+      ? "/logos/fds_logo_blackText.png"
       : isScrolled
       ? "/logos/FDSLogo.png"
       : "/logos/fds_logo_whiteText.png";
@@ -58,8 +58,8 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8 px-8 py-3 rounded-full bg-black/20 backdrop-blur-lg border border-white/10 text-sm font-medium text-white">
-            <a href="#ibm" className="hover:text-(--brand-gold)">Events</a>
+          <div className="hidden font-monteserrat md:flex items-center space-x-8 px-8 py-3 rounded-full bg-black/20 backdrop-blur-lg border border-white/10 text-sm font-medium text-white">
+            <a href="/#events" className="hover:text-(--brand-gold)">Events</a>
             <a href="/about" className="hover:text-(--brand-gold)">About</a>
             <a href="/contact" className="hover:text-(--brand-gold)">Contact</a>
           </div>
@@ -115,8 +115,8 @@ export default function Navbar() {
               </button>
 
               {/* Menu Items */}
-              <div className="flex flex-col items-center justify-center flex-1 gap-10 text-2xl font-bold uppercase text-white">
-                <a href="#ibm" onClick={() => setIsOpen(false)}>Events</a>
+              <div className="font-moderniz flex flex-col items-center justify-center flex-1 gap-10 text-2xl font-bold uppercase text-white">
+                <a href="/#events" onClick={() => setIsOpen(false)}>Events</a>
                 <a href="/about" onClick={() => setIsOpen(false)}>About</a>
                 <a href="/contact" onClick={() => setIsOpen(false)}>Contact</a>
 
