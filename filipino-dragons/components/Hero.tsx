@@ -26,7 +26,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="text-5xl md:text-8xl font-black text-white uppercase leading-[1] tracking-tighter font-moderniz"
+            className="text-4xl md:text-8xl font-black text-white uppercase leading-[1] tracking-tighter font-moderniz"
           >
             Filipino <br />
             <span 

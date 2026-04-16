@@ -6,23 +6,23 @@ import Image from "next/image";
 
 const teamData = {
   executive: [
-    { name: "Raimond Babol", role: "President", image: "/team/raim.png" },
-    { name: "James Gonzales", role: "Secretary", image: "/team/james.png" },
-    { name: "Josef Zuela", role: "Treasurer", image: "/team/josef.png" },
+    { name: "Raimond Babol", role: "President", image: "/team/raim.webp" },
+    { name: "James Gonzales", role: "Secretary", image: "/team/james.webp" },
+    { name: "Josef Zuela", role: "Treasurer", image: "/team/josef.webp" },
   ],
   steering: [
-    { name: "Orland Glovasa", role: "Team Captain", image: "/team/orland.png" },
-    { name: "Carlo Selabao", role: "Men's Captain", image: "/team/carlo.png" },
-    { name: "Jacyl Bisquera", role: "Women's Captain", image: "/team/jacyl.png" },
-    { name: "Louisa Andrade", role: "Women's Captain", image: "/team/ice.png" },
+    { name: "Orland Glovasa", role: "Team Captain", image: "/team/orland.webp" },
+    { name: "Carlo Selabao", role: "Men's Captain", image: "/team/carlo.webp" },
+    { name: "Jacyl Bisquera", role: "Women's Captain", image: "/team/jacyl.webp" },
+    { name: "Louisa Andrade", role: "Women's Captain", image: "/team/ice.webp" },
   ],
   leads: [
-    { name: "Ariel Macapagal", role: "Membership", image: "/team/ariel.png" },
-    { name: "Clint Maceda", role: "Creative & Comms", image: "/team/clint.png" },
-    { name: "Noel Baldivia", role: "Sponsorship", image: "/team/noel.png" },
-    { name: "Aloha Hermano", role: "Equipment & Safety", image: "/team/aloha.png" },
-    { name: "Nelson Pomentil", role: "External", image: "/team/iton.png" },
-    { name: "Alan Albania", role: "Events", image: "/team/alan.png" },
+    { name: "Ariel Macapagal", role: "Membership", image: "/team/ariel.webp" },
+    { name: "Clint Maceda", role: "Creative & Comms", image: "/team/clint.webp" },
+    { name: "Noel Baldivia", role: "Sponsorship", image: "/team/noel.webp" },
+    { name: "Aloha Hermano", role: "Equipment & Safety", image: "/team/aloha.webp" },
+    { name: "Nelson Pomentil", role: "External", image: "/team/iton.webp" },
+    { name: "Alan Albania", role: "Events", image: "/team/alan.webp" },
   ]
 };
 
