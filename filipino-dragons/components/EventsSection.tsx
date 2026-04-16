@@ -106,7 +106,7 @@ export default function EventsSection() {
             Events &{" "}
             <span className="text-(--brand-blue)">Challenges.</span>
           </h2>
-          <p className="font-montserrat text-neutral-500 font-bold uppercase tracking-widest text-xl mt-4">
+          <p className="font-montserrat text-neutral-500 font-medium uppercase tracking-widest text-md mt-4">
             Our history written in salt and sweat.
           </p>
         </div>

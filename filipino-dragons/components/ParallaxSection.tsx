@@ -1,101 +1,132 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useInView,
+  type Variants,
+} from "framer-motion";
 import { useRef } from "react";
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function ParallaxSection() {
-  const ref = useRef(null);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: false, amount: 0.2 });
 
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -180]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 25,
+  });
 
-const logoOpacity = useTransform(scrollYProgress, [0.4, 0.505], [1, 0]);
-  const logoScale = useTransform(scrollYProgress, [0.4, 0.55], [1, 1.3]);
+  const bgTextY = useTransform(smoothProgress, [0, 1], ["0%", "20%"]);
+  const contentY = useTransform(smoothProgress, [0, 1], ["0%", "-15%"]);
+  const logoOpacity = useTransform(
+    smoothProgress,
+    [0, 0.3, 0.5],
+    [0.4, 0.4, 0]
+  );
+
   return (
     <section
-      ref={ref}
-      className="relative min-h-screen bg-white text-(--brand-black) overflow-hidden py-28 flex flex-col justify-center"
+      ref={containerRef}
+      className="relative min-h-[120vh] bg-white text-(--brand-black) overflow-hidden flex flex-col justify-center py-24"
     >
-      <motion.div 
-        style={{ y: y3 }}
-        className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none select-none overflow-hidden"
+      <motion.div
+        style={{ y: bgTextY }}
+        className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none select-none"
       >
-        <span className="font-moderniz text-[20vw] font-black text-black/[0.03] leading-none uppercase tracking-tighter whitespace-nowrap">
-          Filipino
+        <span className="font-moderniz text-[45vw] font-black text-black/[0.03] uppercase tracking-tighter leading-none">
+          FDS
         </span>
       </motion.div>
 
       <motion.div
-        style={{ 
-          scale: logoScale, 
-          opacity: logoOpacity,
-          x: "-30%", 
-          y: "-50%" 
-        }}
-        className="absolute top-1/2 left-1/2 w-[60vw] md:w-[45vw] z-10 pointer-events-none"
+        style={{ opacity: logoOpacity }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-6xl z-10 pointer-events-none"
       >
-        <img 
+        <img
           src="/fds_logo_faded.png"
-          alt="FDS Logo" 
-          className="w-full h-auto object-contain"
+          alt=""
+          className="w-full h-auto object-contain filter grayscale opacity-20"
         />
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-20">
-        
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-          
-          <motion.div 
-            style={{ y: y1 }}
-            className="md:col-span-8 flex flex-col gap-6"
+      <motion.div
+        style={{ y: contentY }}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="max-w-7xl mx-auto px-6 relative z-20 w-full"
+      >
+        <div className="flex flex-col gap-10">
+          <motion.h2
+            variants={itemVariants}
+            className="font-moderniz text-[7.5vw] mt-8 sm:text-5xl md:text-7xl lg:text-7xl font-black uppercase tracking-tight leading-[0.85] flex flex-col"
           >
-            <h2 className="font-moderniz text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-              <span >UNDAUNTED.</span> <br />
-              <span className="text-(--brand-blue)">UNWAVERED.</span> <br />
-              <span>UNSTOPPABLE.</span>
-            </h2>
-            
-            <p className="font-montserrat text-xl md:text-3xl font-thin uppercase tracking-tight text-neutral-800 max-w-2xl mt-4">
-              We like our training like we like our weekends: <br />
-              <span className="bg-(--brand-gold) px-2 text-black inline-block mt-2">
-                fun, slightly unhinged,
-              </span> and strangely addictive.
-            </p>
-          </motion.div>
+            <span>UNDAUNTED.</span>
+            <span className="text-(--brand-blue)">UNWAVERED.</span>
+            <span>UNSTOPPABLE.</span>
+          </motion.h2>
 
-          <motion.div 
-            style={{ y: y2 }}
-            className="md:col-span-4 border-l-4 border-(--brand-black) pl-6 flex flex-col gap-4"
+          <motion.p
+            variants={itemVariants}
+            className="font-montserrat text-xl md:text-3xl font-light uppercase tracking-tight text-neutral-800 leading-snug max-w-xl"
           >
-            <p className="font-moderniz text-lg md:text-xl font-black uppercase leading-tight tracking-tighter">
-              Brave, but not reckless. <br />
-              Daring, not foolish. <br />
-              Bold, not arrogant.
-            </p>
-            <p className="font-montserrat text-neutral-500 font-medium text-sm md:text-base leading-relaxed">
-              Founded in 2008, we’ve grown into one of Singapore’s most spirited dragon boat teams. 
-              We race, we sweat, we chase medals — but we also show up for each other.
-            </p>
-          </motion.div>
+            We like our training like we like our weekends: <br />
+            <span className="relative inline-block mt-2">
+              <span className="relative z-10 bg-(--brand-gold) px-3 py-1 text-black font-semibold">
+                fun, slightly unhinged,
+              </span>
+            </span>{" "}
+            and strangely addictive.
+          </motion.p>
         </div>
 
-        <motion.div 
-          style={{ y: y1 }}
-          className="mt-20 md:mt-40 pt-10"
+        <motion.div
+          variants={itemVariants}
+          className="mt-28 pt-10 border-t border-neutral-200"
         >
-          <p className="font-moderniz text-xl md:text-2xl font-black uppercase tracking-tighter italic max-w-4xl">
-            "Come for the paddling. Stay because the people beside you become the friends you end up keeping."
-          </p>
-          <div className="h-1.5 w-24 bg-(--brand-gold) mt-6" />
-        </motion.div>
+          <blockquote className="font-moderniz text-xl md:text-3xl font-black uppercase tracking-tighter italic leading-tight max-w-4xl">
+            "Come for the paddling. Stay because the people beside you become the friends you keep."
+          </blockquote>
 
-      </div>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 64 } : { width: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            className="h-2 bg-(--brand-gold) mt-6"
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
