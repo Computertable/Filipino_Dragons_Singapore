@@ -37,10 +37,11 @@ export default function JoinBreaker() {
             <a 
               href="contact"
               target="_blank"
-              className="group flex items-center gap-4 px-8 py-4 bg-white text-(--brand-red) font-montserrat font-black uppercase tracking-widest hover:bg-(--brand-gold) hover:text-black transition-all duration-300 shadow-xl active:scale-95"
+              // Changed px-8 -> px-5, py-4 -> py-2, and added text-sm
+              className="group flex items-center gap-3 px-5 py-2.5 bg-white text-(--brand-red) font-montserrat text-sm font-black uppercase tracking-widest hover:bg-(--brand-gold) hover:text-black transition-all duration-300 shadow-lg active:scale-95"
             >
               Recruit Me
-              <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
 
