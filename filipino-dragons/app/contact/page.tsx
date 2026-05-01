@@ -5,8 +5,15 @@ import { MapPin, Mail, Send, Handshake, Users, Loader2, CheckCircle2 } from "luc
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function ContactPage({searchParams}: { searchParams: { type?: string }; }) {
-  const [inquiryType, setInquiryType] = useState(searchParams?.type === "sponsor" ? "sponsor" : "recruit");
+export default function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string }>;
+}) {
+  const params = React.use(searchParams);
+  const [inquiryType, setInquiryType] = useState(
+    params?.type === "sponsor" ? "sponsor" : "recruit"
+  );
   const [status, setStatus] = useState("idle"); // idle, loading, success, error
   const [loadTime, setLoadTime] = useState(0);
 
@@ -58,7 +65,7 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
   return (
     <main className="bg-white min-h-screen overflow-x-hidden">
       <Navbar />
-      
+
       <section className="relative min-h-screen pt-32 pb-12 md:pt-40 md:pb-20 flex items-start md:items-center">
         {/* Background text decoration */}
         <div className="absolute top-10 right-0 opacity-[0.03] select-none pointer-events-none hidden lg:block">
@@ -69,9 +76,9 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            
+
             <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <motion.h1 
+              <motion.h1
                 key={inquiryType}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -82,21 +89,21 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
               </motion.h1>
 
               <p className="font-montserrat text-neutral-600 text-sm md:text-lg mb-8 max-w-sm lg:max-w-md">
-                {inquiryType === "sponsor" 
+                {inquiryType === "sponsor"
                   ? "Partner with Singapore's fiercest dragon boat community. Let's build a legacy together."
                   : "Ready to feel the burn? Drop us a message to join our next trial session."}
               </p>
 
               {/* Toggle Switch */}
               <div className="flex bg-neutral-100 p-1 rounded-2xl border border-neutral-200 mb-10 w-full sm:w-fit">
-                <button 
+                <button
                   type="button"
                   onClick={() => setInquiryType("recruit")}
                   className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-xl font-montserrat text-[10px] font-black tracking-widest transition-all ${inquiryType === "recruit" ? "bg-(--brand-blue) text-white shadow-md" : "text-neutral-500"}`}
                 >
                   <Users size={14} /> RECRUIT
                 </button>
-                <button 
+                <button
                   type="button"
                   onClick={() => setInquiryType("sponsor")}
                   className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-xl font-montserrat text-[10px] font-black tracking-widest transition-all ${inquiryType === "sponsor" ? "bg-(--brand-blue) text-white shadow-md" : "text-neutral-500"}`}
@@ -118,7 +125,7 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
             </div>
 
             {/* Right Column: The Form */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               className="lg:col-span-7 w-full"
@@ -126,7 +133,7 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
               <div className="bg-white p-6 md:p-12 rounded-[2.5rem] border border-neutral-100 shadow-xl shadow-black/5">
                 <AnimatePresence mode="wait">
                   {status === "success" ? (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="flex flex-col items-center justify-center py-12 text-center"
@@ -134,7 +141,7 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
                       <CheckCircle2 size={64} className="text-green-500 mb-4" />
                       <h2 className="font-moderniz text-2xl uppercase mb-2">Message Sent!</h2>
                       <p className="font-montserrat text-neutral-500 mb-8">We'll get back to you faster than a race sprint.</p>
-                      <button 
+                      <button
                         onClick={() => setStatus("idle")}
                         className="text-(--brand-blue) font-montserrat font-bold uppercase text-xs tracking-widest"
                       >
@@ -144,35 +151,35 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                       {/* Honeypot Field (Hidden from users) */}
-                      <input 
-                        type="text" 
-                        name="company" 
-                        className="hidden" 
+                      <input
+                        type="text"
+                        name="company"
+                        className="hidden"
                         value={formData.company}
-                        onChange={(e) => setFormData({...formData, company: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       />
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                         <div className="space-y-2">
                           <label className="font-montserrat text-[10px] font-black uppercase text-neutral-400 ml-1 tracking-[0.2em]">Name / Org</label>
-                          <input 
+                          <input
                             required
-                            type="text" 
-                            className="font-montserrat w-full bg-neutral-50 border border-neutral-200 rounded-xl px-5 py-4 text-black focus:border-yellow-500 focus:bg-white outline-none transition-all text-sm" 
-                            placeholder="Who are you?" 
+                            type="text"
+                            className="font-montserrat w-full bg-neutral-50 border border-neutral-200 rounded-xl px-5 py-4 text-black focus:border-yellow-500 focus:bg-white outline-none transition-all text-sm"
+                            placeholder="Who are you?"
                             value={formData.name}
-                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           />
                         </div>
                         <div className="space-y-2">
                           <label className="font-montserrat text-[10px] font-black uppercase text-neutral-400 ml-1 tracking-[0.2em]">Email Address</label>
-                          <input 
+                          <input
                             required
-                            type="email" 
-                            className="font-montserrat w-full bg-neutral-50 border border-neutral-200 rounded-xl px-5 py-4 text-black focus:border-yellow-500 focus:bg-white outline-none transition-all text-sm" 
-                            placeholder="email@example.com" 
+                            type="email"
+                            className="font-montserrat w-full bg-neutral-50 border border-neutral-200 rounded-xl px-5 py-4 text-black focus:border-yellow-500 focus:bg-white outline-none transition-all text-sm"
+                            placeholder="email@example.com"
                             value={formData.email}
-                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           />
                         </div>
                       </div>
@@ -188,10 +195,10 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
                           <label className="font-montserrat text-[10px] font-black uppercase text-neutral-400 ml-1 tracking-[0.2em]">
                             {inquiryType === "recruit" ? "Experience Level" : "Partnership Interest"}
                           </label>
-                          <select 
+                          <select
                             className="w-full font-montserrat bg-neutral-50 border border-neutral-200 rounded-xl px-5 py-4 text-black appearance-none outline-none focus:border-yellow-500 focus:bg-white cursor-pointer transition-all text-sm"
                             value={formData.extraField}
-                            onChange={(e) => setFormData({...formData, extraField: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, extraField: e.target.value })}
                           >
                             {inquiryType === "recruit" ? (
                               <>
@@ -212,17 +219,17 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
 
                       <div className="space-y-2">
                         <label className="font-montserrat text-[10px] font-black uppercase text-neutral-400 ml-1 tracking-[0.2em]">How can we help?</label>
-                        <textarea 
+                        <textarea
                           required
-                          rows={4} 
-                          className="font-montserrat w-full bg-neutral-50 border border-neutral-200 rounded-xl px-5 py-4 text-black focus:border-yellow-500 focus:bg-white outline-none resize-none transition-all text-sm" 
+                          rows={4}
+                          className="font-montserrat w-full bg-neutral-50 border border-neutral-200 rounded-xl px-5 py-4 text-black focus:border-yellow-500 focus:bg-white outline-none resize-none transition-all text-sm"
                           placeholder="Tell us more..."
                           value={formData.message}
-                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         ></textarea>
                       </div>
 
-                      <button 
+                      <button
                         disabled={status === "loading"}
                         className="w-full md:w-auto px-10 py-4 bg-(--brand-gold) text-black font-montserrat font-black uppercase tracking-widest rounded-xl hover:bg-black hover:text-white active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3 mt-4"
                       >
@@ -232,7 +239,7 @@ export default function ContactPage({searchParams}: { searchParams: { type?: str
                           <>Send Inquiry <Send size={18} /></>
                         )}
                       </button>
-                      
+
                       {status === "error" && (
                         <p className="text-red-500 font-montserrat text-xs mt-2 text-center md:text-left">
                           Something went wrong. Please try again or email us directly.
