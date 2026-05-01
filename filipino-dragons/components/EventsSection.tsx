@@ -7,7 +7,7 @@ import { X, Plus } from "lucide-react";
 interface Race {
   id: string;
   title: string;
-  subtitle: string;
+  date: string;
   coverImage: string;
   photos: string[];
 }
@@ -16,6 +16,7 @@ export default function EventsSection() {
   const [events, setEvents] = useState<Race[]>([]);
   const [activeGallery, setActiveGallery] = useState<Race | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const scrollPosition = useRef(0);
 
   //Fetch WP Data
   useEffect(() => {
@@ -40,9 +41,8 @@ export default function EventsSection() {
             "text/html"
           );
 
-          // Extract tagline
-          const tagline =
-            doc.querySelector(".wp-block-site-tagline")?.textContent || "";
+          // Extract date
+          const dateline = doc.querySelector("body > p")?.textContent?.trim() || "";
 
           // Extract only gallery images (cleaner than media API)
           const galleryImages = Array.from(
@@ -52,7 +52,7 @@ export default function EventsSection() {
           return {
             id: event.slug,
             title: event.title.rendered,
-            subtitle: tagline,
+            date: dateline,
             coverImage:
               media?.[0]?.source_url ||
               galleryImages[0],
@@ -70,24 +70,20 @@ export default function EventsSection() {
   //Prevent double scrollbar
   useEffect(() => {
     if (activeGallery) {
-      const scrollY = window.scrollY;
+      scrollPosition.current = window.scrollY;
 
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
+      document.body.style.top = `-${scrollPosition.current}px`;
       document.body.style.width = "100%";
 
     } else {
-      const scrollY = document.body.style.top;
-
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
 
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0") * -1);
-      }
+      window.scrollTo(0, scrollPosition.current);
     }
 
     return () => {
@@ -134,12 +130,12 @@ export default function EventsSection() {
 
             <div className="relative h-full p-8 flex flex-col justify-between text-white">
               <div>
-                <p className="font-montserrat text-xs font-black uppercase tracking-[0.2em] mb-2 text-white/70">
-                  {race.subtitle}
-                </p>
                 <h3 className="font-moderniz text-2xl font-black uppercase leading-none tracking-tighter">
                   {race.title}
                 </h3>
+                <p className="font-montserrat text-xs font-black uppercase tracking-[0.2em] mb-2 text-white/70">
+                  {race.date}
+                </p>
               </div>
 
               <div className="flex justify-end">
@@ -159,7 +155,7 @@ export default function EventsSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-100 bg-black/95 flex flex-col"
+            className="fixed inset-0 z-[100] bg-black/95 flex flex-col"
           >
             <button
               onClick={() => setActiveGallery(null)}
@@ -170,7 +166,7 @@ export default function EventsSection() {
 
             <div className="flex-1 overflow-y-auto overscroll-contain p-12">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-white text-5xl font-black uppercase mb-12 text-center">
+                <h2 className="font-moderniz text-white text-5xl font-black uppercase mb-12 text-center">
                   {activeGallery.title}
                 </h2>
 
