@@ -11,14 +11,14 @@ const teamData = {
   ],
   steering: [
     { name: "Orland Glovasa", role: "Team Captain", image: "/team/orland.webp" },
-    { name: "Carlo Selabao", role: "Men's Captain", image: "/team/carlo.webp" },
+    { name: "Carlo Selabao", role: "Men's Vice Captain", image: "/team/carlo.webp" },
     { name: "Jacyl Bisquera", role: "Women's Captain", image: "/team/jacyl_compressed.webp" },
-    { name: "Louisa Andrade", role: "Women's Captain", image: "/team/ice.webp" },
+    { name: "Louisa Andrade", role: "Women's Vice Captain", image: "/team/ice.webp" },
   ],
   leads: [
     { name: "Ariel Macapagal", role: "Membership", image: "/team/ariel.webp" },
     { name: "Clint Maceda", role: "Creative & Comms", image: "/team/clint.webp" },
-    { name: "Mickaela Nadal Balagot", role: "Sponsorship", image: "/team/mickee.webp" },
+    { name: "Mickee Balagot", role: "Sponsorship", image: "/team/tallmickee-Photoroom.png" },
     { name: "Aloha Hermano", role: "Equipment & Safety", image: "/team/aloha_compressed.webp" },
     { name: "Nelson Pomentil", role: "External", image: "/team/iton.webp" },
     { name: "Alan Albania", role: "Events", image: "/team/alan_compressed.webp" },
