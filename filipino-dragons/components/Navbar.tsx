@@ -118,6 +118,7 @@ export default function Navbar() {
               {/* Menu Items */}
               <div className="font-moderniz flex flex-col items-center justify-center flex-1 gap-10 text-2xl font-bold uppercase text-white">
                 <a href="/#events" onClick={() => setIsOpen(false)}>Events</a>
+                <a href="/ibm" onClick={() => setIsOpen(false)}>IBM</a>
                 <a href="/about" onClick={() => setIsOpen(false)}>About</a>
                 <a href="/contact" onClick={() => setIsOpen(false)}>Contact</a>
 

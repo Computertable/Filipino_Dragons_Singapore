@@ -13,8 +13,9 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <VideoSection/>
+      
       <ParallaxSection />
+      <VideoSection/>
       <TrainingSection />
       <EventsSection/>
      

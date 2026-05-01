@@ -26,7 +26,7 @@ export default function IBMPage() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        src="/ibm/logo.png"
+                        src="/ibm/whiteLogo.png"
                         alt="Isang Bangkang Malaya 2026 Logo"
                         className="w-full max-w-lg md:max-w-2xl lg:max-w-3xl mb-8 object-contain"
                     />
