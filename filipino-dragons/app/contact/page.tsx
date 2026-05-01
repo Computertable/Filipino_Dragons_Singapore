@@ -5,8 +5,8 @@ import { MapPin, Mail, Send, Handshake, Users, Loader2, CheckCircle2 } from "luc
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function ContactPage() {
-  const [inquiryType, setInquiryType] = useState("recruit");
+export default function ContactPage({searchParams}: { searchParams: { type?: string }; }) {
+  const [inquiryType, setInquiryType] = useState(searchParams?.type === "sponsor" ? "sponsor" : "recruit");
   const [status, setStatus] = useState("idle"); // idle, loading, success, error
   const [loadTime, setLoadTime] = useState(0);
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { X, Plus } from "lucide-react";
 
 interface Race {
@@ -18,7 +18,13 @@ export default function EventsSection() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const scrollPosition = useRef(0);
 
-  //Fetch WP Data
+  // ✅ Helper: Parse Date safely
+  function parseEventDate(dateStr: string) {
+    const parsed = new Date(dateStr);
+    return isNaN(parsed.getTime()) ? new Date(0) : parsed;
+  }
+
+  // ✅ Fetch WP Data
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
@@ -35,16 +41,15 @@ export default function EventsSection() {
           );
           const media = await mediaRes.json();
 
-          // Parse HTML content
           const doc = parser.parseFromString(
             event.content.rendered,
             "text/html"
           );
 
-          // Extract date
-          const dateline = doc.querySelector("body > p")?.textContent?.trim() || "";
+          // ✅ Extract date from first <p>
+          const dateline =
+            doc.querySelector("body > p")?.textContent?.trim() || "";
 
-          // Extract only gallery images (cleaner than media API)
           const galleryImages = Array.from(
             doc.querySelectorAll(".wp-block-gallery img")
           ).map((img) => img.getAttribute("src") || "");
@@ -54,9 +59,10 @@ export default function EventsSection() {
             title: event.title.rendered,
             date: dateline,
             coverImage:
-              media?.[0]?.source_url ||
-              galleryImages[0],
-            photos: galleryImages.length ? galleryImages : media.map((m: any) => m.source_url),
+              media?.[0]?.source_url || galleryImages[0],
+            photos: galleryImages.length
+              ? galleryImages
+              : media.map((m: any) => m.source_url),
           };
         })
       );
@@ -67,7 +73,16 @@ export default function EventsSection() {
     fetchData();
   }, []);
 
-  //Prevent double scrollbar
+  // Sort events (latest first)
+  const sortedEvents = useMemo(() => {
+    return [...events].sort(
+      (a, b) =>
+        parseEventDate(b.date).getTime() -
+        parseEventDate(a.date).getTime()
+    );
+  }, [events]);
+
+  // Prevent scroll jump
   useEffect(() => {
     if (activeGallery) {
       scrollPosition.current = window.scrollY;
@@ -76,7 +91,6 @@ export default function EventsSection() {
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollPosition.current}px`;
       document.body.style.width = "100%";
-
     } else {
       document.body.style.overflow = "";
       document.body.style.position = "";
@@ -113,7 +127,7 @@ export default function EventsSection() {
         ref={scrollRef}
         className="flex gap-6 overflow-x-auto px-[5vw] pb-12 no-scrollbar snap-x snap-proximity"
       >
-        {events.map((race) => (
+        {sortedEvents.map((race) => (
           <motion.div
             key={race.id}
             onClick={() => setActiveGallery(race)}
@@ -166,6 +180,7 @@ export default function EventsSection() {
 
             <div className="flex-1 overflow-y-auto overscroll-contain p-12">
               <div className="max-w-6xl mx-auto">
+                {/* ✅ FIXED FONT */}
                 <h2 className="font-moderniz text-white text-5xl font-black uppercase mb-12 text-center">
                   {activeGallery.title}
                 </h2>

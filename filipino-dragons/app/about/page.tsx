@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const teamData = {
   executive: [
     { name: "Raimond Babol", role: "President", image: "/team/raim.webp" },
-    { name: "James Gonzales", role: "Secretary", image: "/team/james_compressed.webp" },
+    { name: "James Gonzales", role: "Secretary", image: "/team/James.webp" },
     { name: "Josef Zuela", role: "Treasurer", image: "/team/josef.webp" },
   ],
   steering: [
