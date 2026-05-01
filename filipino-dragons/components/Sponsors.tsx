@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function SponsorSection() {
   const sponsors = [
-    { name: "Hazonas", logo: "/logos/Hazonas_2026.png", link: "https://www.hazonas.com/" },
+    { name: "Hazonas", logo: "/logos/hazonas.png", link: "https://www.hazonas.com/" },
     { name: "Al Capone's", logo: "/logos/alcapones.png", link: "https://alcaponesg.com/pages/locations" },
     { name: "Dot", logo: "/logos/dot.png", link: "https://www.facebook.com/dalaine.ong" },
     { name: "RD Fitness", logo: "/logos/RD_Fitness.png", link: "https://rd-fitness.com/" },
