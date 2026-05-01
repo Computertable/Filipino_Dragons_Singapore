@@ -4,11 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Mail, Send, Handshake, Users, Loader2, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useSearchParams } from "next/navigation";
 
-export default function ContactPage() {
-  const searchParams = useSearchParams();
-  const [inquiryType, setInquiryType] = useState("recruit");
+export default function ContactPage({searchParams}: { searchParams: { type?: string }; }) {
+  const [inquiryType, setInquiryType] = useState(searchParams?.type === "sponsor" ? "sponsor" : "recruit");
   const [status, setStatus] = useState("idle"); // idle, loading, success, error
   const [loadTime, setLoadTime] = useState(0);
 
@@ -19,14 +17,6 @@ export default function ContactPage() {
     extraField: "Total Beginner",
     company: "",
   });
-
-  useEffect(() => {
-  const type = searchParams.get("type");
-
-  if (type === "sponsor" || type === "recruit") {
-    setInquiryType(type);
-  }
-}, [searchParams]);
 
   useEffect(() => {
     setLoadTime(Date.now());
