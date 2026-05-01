@@ -120,10 +120,10 @@ export default function Footer() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold text-white uppercase">
+                  <p className="text-[11px] font-bold text-white uppercase font-montserrat">
                     Kallang Riverside
                   </p>
-                  <p className="text-[10px] text-neutral-500 uppercase">
+                  <p className="text-[10px] text-neutral-500 uppercase font-montserrat">
                     Singapore 338988
                   </p>
                 </div>
@@ -138,10 +138,10 @@ export default function Footer() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold text-white uppercase">
+                  <p className="text-[11px] font-bold text-white uppercase font-montserrat">
                     Email Us
                   </p>
-                  <p className="text-[10px] text-neutral-500 uppercase">
+                  <p className="text-[10px] text-neutral-500 uppercase font-montserrat">
                     hellomembers@filipinodragons.org.sg
                   </p>
                 </div>
@@ -153,7 +153,7 @@ export default function Footer() {
 
         {/* BOTTOM BAR */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[9px] text-neutral-600 uppercase tracking-[0.3em] text-center md:text-left">
+          <p className="text-[9px] text-neutral-600 uppercase tracking-[0.3em] text-center md:text-left font-montserrat">
             © 2026 Filipino Dragons Singapore. Built with grit and salt water.
           </p>
 

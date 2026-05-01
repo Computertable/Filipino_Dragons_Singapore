@@ -58,8 +58,9 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden font-monteserrat md:flex items-center space-x-8 px-8 py-3 rounded-full bg-black/20 backdrop-blur-lg border border-white/10 text-sm font-medium text-white">
+          <div className="hidden font-montserrat md:flex items-center space-x-8 px-8 py-3 rounded-full bg-black/20 backdrop-blur-lg border border-white/10 text-sm font-medium text-white">
             <a href="/#events" className="hover:text-(--brand-gold)">Events</a>
+            <a href="/ibm" className="hover:text-(--brand-gold)">IBM</a>
             <a href="/about" className="hover:text-(--brand-gold)">About</a>
             <a href="/contact" className="hover:text-(--brand-gold)">Contact</a>
           </div>
@@ -67,7 +68,7 @@ export default function Navbar() {
           <div className="flex-1 flex justify-end items-center gap-4">
 
             <a
-              href="#join"
+              href="/contact"
               className="hidden md:block px-6 py-2.5 rounded-full bg-white text-gray-900 font-bold text-sm hover:bg-(--brand-gold) transition"
             >
               Join the Team
@@ -122,7 +123,7 @@ export default function Navbar() {
 
                 {/* CTA */}
                 <a
-                  href="#join"
+                  href="/contact"
                   onClick={() => setIsOpen(false)}
                   className="mt-6 px-6 py-3 bg-white text-black rounded-full text-lg"
                 >
