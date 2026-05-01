@@ -18,7 +18,7 @@ const teamData = {
   leads: [
     { name: "Ariel Macapagal", role: "Membership", image: "/team/ariel.webp" },
     { name: "Clint Maceda", role: "Creative & Comms", image: "/team/clint.webp" },
-    { name: "Mickee Balagot", role: "Sponsorship", image: "/team/mickee.webp" },
+    { name: "Mickaela Nadal Balagot", role: "Sponsorship", image: "/team/mickee.webp" },
     { name: "Aloha Hermano", role: "Equipment & Safety", image: "/team/aloha_compressed.webp" },
     { name: "Nelson Pomentil", role: "External", image: "/team/iton.webp" },
     { name: "Alan Albania", role: "Events", image: "/team/alan_compressed.webp" },
