@@ -23,7 +23,7 @@ export default function SponsorSection() {
         {title}
       </h3>
       
-      <div className="flex flex-wrap justify-center gap-12 md:gap-20 max-w-4xl mx-auto">
+      <div className="flex flex-wrap justify-center gap-8 md:gap-20 max-w-4xl mx-auto">
         {items.map((item, index) => (
           <motion.div
             key={index}
@@ -45,7 +45,7 @@ export default function SponsorSection() {
               <img 
                 src={item.logo} 
                 alt={item.name} 
-                className="h-16 md:h-28 lg:h-32 w-auto object-contain transition-transform duration-500 hover:scale-110"
+                className="h-28 md:h-28 lg:h-32 w-auto object-contain transition-transform duration-500 hover:scale-110"
               />
             </a>
           </motion.div>
