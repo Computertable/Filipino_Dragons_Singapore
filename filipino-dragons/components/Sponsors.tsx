@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 
 export default function SponsorSection() {
   const sponsors = [
-    { name: "Hazonas", logo: "/logos/hazonas.png", link: "https://www.hazonas.com/" },
+    { name: "Hazonas", logo: "/logos/Hazonas_2026.png", link: "https://www.hazonas.com/" },
     { name: "Al Capone's", logo: "/logos/alcapones.png", link: "https://alcaponesg.com/pages/locations" },
     { name: "Dot", logo: "/logos/dot.png", link: "https://www.facebook.com/dalaine.ong" },
+    { name: "RD Fitness", logo: "/logos/RD_Fitness.png", link: "https://rd-fitness.com/" },
+    { name: "Smiles Remittance", logo: "/logos/Smiles_Logo.png", link: "https://www.smileswallet.com/singapore/" },
   ];
 
   const affiliations = [
@@ -19,7 +21,7 @@ export default function SponsorSection() {
         {title}
       </h3>
       
-      <div className="flex flex-wrap justify-center items-center gap-12 md:gap-32">
+      <div className="flex flex-wrap justify-center gap-12 md:gap-20 max-w-4xl mx-auto">
         {items.map((item, index) => (
           <motion.div
             key={index}
@@ -35,7 +37,7 @@ export default function SponsorSection() {
               delay: index * 0.1,
               ease: "easeOut" 
             }}
-            className="filter grayscale hover:grayscale-0 opacity-40 hover:opacity-100 transition-all duration-700 cursor-pointer"
+            className="w-[30%] flex justify-center filter grayscale hover:grayscale-0 opacity-40 hover:opacity-100 transition-all duration-700 cursor-pointer"
           >
             <a href={item.link} target="_blank" rel="noopener noreferrer">
               <img 
