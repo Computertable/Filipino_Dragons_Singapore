@@ -12,62 +12,149 @@ interface Race {
   photos: string[];
 }
 
+interface Race {
+  id: string;
+  title: string;
+  date: string;
+  coverImage: string;
+  photos: string[];
+}
+
+const MANUAL_EVENTS: Race[] = [
+  {
+    id: "tampines-race",
+    title: "Tampines Race",
+    date: "January 10, 2026",
+    coverImage: "/images/events/tampines-race-1.webp",
+    photos: [
+      "/images/events/tampines-race-1.webp",
+      "/images/events/tampines-race-2.webp",
+      "/images/events/tampines-race-3.webp",
+    ],
+  },
+  {
+    id: "unang-sagwan",
+    title: "Unang Sagwan",
+    date: "January 18, 2026",
+    coverImage: "/images/events/unang-sagwan-1.webp",
+    photos: [
+      "/images/events/unang-sagwan-1.webp",
+      "/images/events/unang-sagwan-2.webp",
+      "/images/events/unang-sagwan-3.webp",
+      "/images/events/unang-sagwan-4.webp"
+    ],
+  },
+  {
+    id: "newbie",
+    title: "Newbie",
+    date: "January 25, 2026",
+    coverImage: "/images/events/newbie-1.webp",
+    photos: [
+      "/images/events/newbie-1.webp",
+      "/images/events/newbie-2.webp",
+      "/images/events/newbie-3.webp",
+    ],
+  },
+  {
+    id: "century-race",
+    title: "Century Race",
+    date: "March 7, 2026",
+    coverImage: "/images/events/century-race-1.webp",
+    photos: [
+      "/images/events/century-race-1.webp",
+      "/images/events/century-race-2.webp",
+      "/images/events/century-race-3.webp",
+      "/images/events/century-race-4.webp",
+    ],
+  },
+  {
+    id: "cleanup",
+    title: "Cleanup",
+    date: "March 29, 2026",
+    coverImage: "/images/events/cleanup-1.webp",
+    photos: [
+      "/images/events/cleanup-1.webp",
+      "/images/events/cleanup-2.webp",
+    ],
+  },
+  {
+    id: "awakening",
+    title: "Awakening",
+    date: "April 5, 2026",
+    coverImage: "/images/events/awakening-1.webp",
+    photos: [
+      "/images/events/awakening-1.webp",
+      "/images/events/awakening-2.webp",
+      "/images/events/awakening-3.webp",
+    ],
+  },
+
+
+];
+
 export default function EventsSection() {
-  const [events, setEvents] = useState<Race[]>([]);
+  const [events, setEvents] = useState<Race[]>(MANUAL_EVENTS);
   const [activeGallery, setActiveGallery] = useState<Race | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const scrollPosition = useRef(0);
 
-  //Fetch WP Data
+  /* 
+  // COMMENTED OUT OLD WP FETCH CODE
+  // Fetch WP Data
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch(
-        "https://filipinodragons.org.sg/wp-json/wp/v2/events"
-      );
-      const eventsData = await res.json();
+      try {
+        const res = await fetch(
+          "https://filipinodragons.org.sg/wp-json/wp/v2/events"
+        );
+        const eventsData = await res.json();
 
-      const parser = new DOMParser();
+        const parser = new DOMParser();
 
-      const eventsWithImages: Race[] = await Promise.all(
-        eventsData.map(async (event: any) => {
-          const mediaRes = await fetch(
-            `https://filipinodragons.org.sg/wp-json/wp/v2/media?parent=${event.id}`
-          );
-          const media = await mediaRes.json();
+        const eventsWithImages: Race[] = await Promise.all(
+          eventsData.map(async (event: any) => {
+            const mediaRes = await fetch(
+              `https://filipinodragons.org.sg/wp-json/wp/v2/media?parent=${event.id}`
+            );
+            const media = await mediaRes.json();
 
-          // Parse HTML content
-          const doc = parser.parseFromString(
-            event.content.rendered,
-            "text/html"
-          );
+            // Parse HTML content
+            const doc = parser.parseFromString(
+              event.content.rendered,
+              "text/html"
+            );
 
-          // Extract date
-          const dateline = doc.querySelector("body > p")?.textContent?.trim() || "";
+            // Extract date
+            const dateline = doc.querySelector("body > p")?.textContent?.trim() || "";
 
-          // Extract only gallery images (cleaner than media API)
-          const galleryImages = Array.from(
-            doc.querySelectorAll(".wp-block-gallery img")
-          ).map((img) => img.getAttribute("src") || "");
+            // Extract only gallery images (cleaner than media API)
+            const galleryImages = Array.from(
+              doc.querySelectorAll(".wp-block-gallery img")
+            ).map((img) => img.getAttribute("src") || "");
 
-          return {
-            id: event.slug,
-            title: event.title.rendered,
-            date: dateline,
-            coverImage:
-              media?.[0]?.source_url ||
-              galleryImages[0],
-            photos: galleryImages.length ? galleryImages : media.map((m: any) => m.source_url),
-          };
-        })
-      );
+            return {
+              id: event.slug,
+              title: event.title.rendered,
+              date: dateline,
+              coverImage:
+                media?.[0]?.source_url ||
+                galleryImages[0],
+              photos: galleryImages.length ? galleryImages : media.map((m: any) => m.source_url),
+            };
+          })
+        );
 
-      setEvents(eventsWithImages);
+        setEvents(eventsWithImages);
+      } catch (error) {
+        console.error("Failed to fetch WP events:", error);
+      }
     }
 
     fetchData();
   }, []);
+  */
 
-  //Prevent double scrollbar
+  // Prevent double scrollbar
   useEffect(() => {
     if (activeGallery) {
       scrollPosition.current = window.scrollY;
@@ -100,7 +187,7 @@ export default function EventsSection() {
         <div>
           <h2 className="font-moderniz text-2xl md:text-4xl font-black uppercase tracking-tighter leading-none">
             Events &{" "}
-            <span className="text-(--brand-blue)">Challenges.</span>
+            <span className="text-[var(--brand-blue)]">Challenges.</span>
           </h2>
           <p className="font-montserrat text-neutral-500 font-medium uppercase tracking-widest text-md mt-4">
             Our history written in salt and sweat.
@@ -126,7 +213,7 @@ export default function EventsSection() {
               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
             />
 
-            <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
 
             <div className="relative h-full p-8 flex flex-col justify-between text-white">
               <div>
@@ -159,14 +246,14 @@ export default function EventsSection() {
           >
             <button
               onClick={() => setActiveGallery(null)}
-              className="absolute top-8 right-8 text-white p-4 z-10"
+              className="absolute top-8 right-8 text-white p-4 z-10 hover:text-gray-300 transition-colors"
             >
               <X size={40} />
             </button>
 
             <div className="flex-1 overflow-y-auto overscroll-contain p-12">
-              <div className="max-w-6xl mx-auto">
-                <h2 className="font-moderniz text-white text-5xl font-black uppercase mb-12 text-center">
+              <div className="max-w-6xl mx-auto mt-8">
+                <h2 className="font-moderniz text-white text-3xl md:text-5xl font-black uppercase mb-12 text-center">
                   {activeGallery.title}
                 </h2>
 
@@ -178,7 +265,8 @@ export default function EventsSection() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
                       src={url}
-                      className="w-full h-auto rounded-xl"
+                      alt={`${activeGallery.title} photo ${i + 1}`}
+                      className="w-full h-auto rounded-xl object-cover"
                     />
                   ))}
                 </div>
