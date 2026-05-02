@@ -9,7 +9,7 @@ export default function SponsorSection() {
   ];
 
   const partners = [
-    { name: "RD Fitness", logo: "/logos/RD_Fitness.png", link: "https://rd-fitness.com/" }
+    { name: "RD Fitness", logo: "/logos/RD_Fitness_RED.png", link: "https://rd-fitness.com/" }
   ];
 
   const affiliations = [

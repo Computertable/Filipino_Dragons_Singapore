@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { X, Plus } from "lucide-react";
 
 interface Race {
@@ -163,7 +163,6 @@ export default function EventsSection() {
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollPosition.current}px`;
       document.body.style.width = "100%";
-
     } else {
       document.body.style.overflow = "";
       document.body.style.position = "";
@@ -200,7 +199,7 @@ export default function EventsSection() {
         ref={scrollRef}
         className="flex gap-6 overflow-x-auto px-[5vw] pb-12 no-scrollbar snap-x snap-proximity"
       >
-        {events.map((race) => (
+        {sortedEvents.map((race) => (
           <motion.div
             key={race.id}
             onClick={() => setActiveGallery(race)}
