@@ -1,16 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo } from "react"; // Added useMemo
 import { X, Plus } from "lucide-react";
-
-interface Race {
-  id: string;
-  title: string;
-  date: string;
-  coverImage: string;
-  photos: string[];
-}
 
 interface Race {
   id: string;
@@ -88,17 +80,19 @@ const MANUAL_EVENTS: Race[] = [
       "/images/events/awakening-3.webp",
     ],
   },
-
-
 ];
 
 export default function EventsSection() {
-  const [events, setEvents] = useState<Race[]>(MANUAL_EVENTS);
+  const [events] = useState<Race[]>(MANUAL_EVENTS); // Removed setEvents as it's not used now
   const [activeGallery, setActiveGallery] = useState<Race | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const scrollPosition = useRef(0);
 
-  /* 
+  const sortedEvents = useMemo(() => {
+    return [...events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  }, [events]);
+
+ /* 
   // COMMENTED OUT OLD WP FETCH CODE
   // Fetch WP Data
   useEffect(() => {
@@ -154,11 +148,10 @@ export default function EventsSection() {
   }, []);
   */
 
-  // Prevent double scrollbar
+
   useEffect(() => {
     if (activeGallery) {
       scrollPosition.current = window.scrollY;
-
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollPosition.current}px`;
@@ -168,10 +161,8 @@ export default function EventsSection() {
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
-
       window.scrollTo(0, scrollPosition.current);
     }
-
     return () => {
       document.body.style.overflow = "";
       document.body.style.position = "";
@@ -194,7 +185,6 @@ export default function EventsSection() {
         </div>
       </div>
 
-      {/* Horizontal Scroll */}
       <div
         ref={scrollRef}
         className="flex gap-6 overflow-x-auto px-[5vw] pb-12 no-scrollbar snap-x snap-proximity"
@@ -211,9 +201,7 @@ export default function EventsSection() {
               alt={race.title}
               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
             />
-
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-
             <div className="relative h-full p-8 flex flex-col justify-between text-white">
               <div>
                 <h3 className="font-moderniz text-2xl font-black uppercase leading-none tracking-tighter">
@@ -223,7 +211,6 @@ export default function EventsSection() {
                   {race.date}
                 </p>
               </div>
-
               <div className="flex justify-end">
                 <div className="bg-white/20 backdrop-blur-md p-3 rounded-full group-hover:bg-white group-hover:text-black transition-all">
                   <Plus size={24} />
@@ -234,7 +221,6 @@ export default function EventsSection() {
         ))}
       </div>
 
-      {/* Modal Gallery */}
       <AnimatePresence>
         {activeGallery && (
           <motion.div
@@ -249,13 +235,11 @@ export default function EventsSection() {
             >
               <X size={40} />
             </button>
-
             <div className="flex-1 overflow-y-auto overscroll-contain p-12">
               <div className="max-w-6xl mx-auto mt-8">
                 <h2 className="font-moderniz text-white text-3xl md:text-5xl font-black uppercase mb-12 text-center">
                   {activeGallery.title}
                 </h2>
-
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
                   {activeGallery.photos.map((url, i) => (
                     <motion.img
