@@ -141,7 +141,9 @@ export default function IBMPage() {
                             </h3>
                         </div>
                         <p className="font-montserrat text-neutral-300 leading-relaxed text-sm md:text-base">
-                            This year’s theme pays tribute to the rich cultural heritage of the Visayan warriors, renowned for their intricate tattoos that told stories of courage, identity, and unity.
+                            Panagbenga is an annual flower festival celebrated every February which takes place in Baguio City, Philippines. The term
+                            "Panagbenga" comes from a Kankanaey term meaning "season of blooming". This festival reflects the history, traditions and values of Baguio and the Cordilleras. 
+                            It lasts over a month long and flourishes through community spirit involvement.
                         </p>
 
                         <div className="relative group p-10 rounded-[2.5rem] bg-neutral-900/40 border border-white/10 overflow-hidden backdrop-blur-sm transition-all duration-500 hover:border-(--brand-gold)/30">
