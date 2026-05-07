@@ -303,7 +303,7 @@ export default function IBMPage() {
 
                         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
                             <a
-                                href="/IBM-2026-Rules.pdf"
+                                href="/IBM-2026-RULES-REGULATIONS-6-May-2026.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center gap-2 bg-(--brand-black) text-white px-8 py-4 rounded-full font-montserrat font-black uppercase tracking-widest text-xs hover:bg-neutral-800 transition-colors border border-white/10"

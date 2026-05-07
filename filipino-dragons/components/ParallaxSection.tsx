@@ -102,7 +102,7 @@ export default function ParallaxSection() {
             className="font-moderniz text-[8vw] sm:text-5xl md:text-7xl lg:text-7xl font-black uppercase tracking-tight leading-[0.85] flex flex-col mt-4 md:mt-8"
           >
             <span>UNDAUNTED.</span>
-            <span className="text-(--brand-blue)">UNWAVERED.</span>
+            <span className="text-(--brand-blue)">UNBREAKABLE.</span>
             <span>UNSTOPPABLE.</span>
           </motion.h2>
 
