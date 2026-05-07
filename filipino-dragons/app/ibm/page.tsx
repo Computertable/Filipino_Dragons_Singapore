@@ -221,6 +221,7 @@ export default function IBMPage() {
                         {[
                             {
                                 title: "Fiesta Cup",
+                                def: "DB22 200m Open",
                                 desc: "A fun race for the Filipino community.",
                                 tag: "Community",
                                 color: "var(--brand-blue)",
@@ -228,6 +229,7 @@ export default function IBMPage() {
                             },
                             {
                                 title: "Captain’s Cup",
+                                def: "DB12 200m Mixed",
                                 desc: "Caters to experienced and competitive paddlers.",
                                 tag: "Competitive",
                                 color: "var(--brand-gold)",
@@ -236,6 +238,7 @@ export default function IBMPage() {
                             },
                             {
                                 title: "Barak Cup",
+                                def: "DB12 200m Open",
                                 desc: "The ultimate test for our senior paddlers. A high-stakes race for the most experienced warriors on the water.",
                                 tag: "Masters",
                                 color: "var(--brand-red)",
@@ -248,10 +251,8 @@ export default function IBMPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                // Stagger the middle card down slightly on desktop to break the "AI Grid" look
                                 className={`relative group p-10 rounded-[1.5rem] bg-neutral-900/40 border-l-2 backdrop-blur-sm transition-all duration-500 hover:bg-neutral-900/60 ${cat.featured ? 'lg:mt-12 border-(--brand-gold)' : 'border-white/10'}`}
                             >
-                                {/* Massive Background Number */}
                                 <span className="absolute top-4 right-6 font-moderniz text-8xl text-white/[0.03] select-none group-hover:text-white/[0.07] transition-colors">
                                     {cat.num}
                                 </span>
@@ -271,11 +272,13 @@ export default function IBMPage() {
                                         </span>
                                     </h3>
 
+                                    <p className="font-montserrat text-sm uppercase font-semibold tracking-[0.25em] text-white/70 mb-4">
+                                        {cat.def}
+                                    </p>
                                     <p className="font-montserrat text-sm text-neutral-400 leading-relaxed max-w-[240px]">
                                         {cat.desc}
                                     </p>
 
-                                    {/* The "Pintados" Accent Line */}
                                     <div className="mt-8 flex items-center gap-2">
                                         <div className="h-[1px] w-12 bg-white/20 group-hover:w-20 group-hover:bg-(--brand-gold) transition-all duration-500" />
                                         <div className="h-1 w-1 rounded-full bg-white/20 group-hover:bg-(--brand-gold)" />
@@ -299,7 +302,6 @@ export default function IBMPage() {
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                            {/* Rules & Regs - Opens PDF in new tab */}
                             <a
                                 href="/IBM-2026-RULES-REGULATIONS-6-May-2026.pdf"
                                 target="_blank"
