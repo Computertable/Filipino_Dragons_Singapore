@@ -89,8 +89,10 @@ export default function EventsSection() {
   const scrollPosition = useRef(0);
 
   const sortedEvents = useMemo(() => {
-    return [...events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  }, [events]);
+  return [...events].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}, [events]);
 
  /* 
   // COMMENTED OUT OLD WP FETCH CODE

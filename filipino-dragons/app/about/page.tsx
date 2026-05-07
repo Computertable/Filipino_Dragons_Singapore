@@ -63,7 +63,7 @@ const MemberCard = ({ member, size = "md" }: { member: any; size?: "lg" | "md" }
         />
       </div>
       <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
-      <div className="absolute bottom-6 left-6 right-6 z-30">
+      <div className="absolute bottom-6 left-3 right-6 z-30">
         <h4 className="font-moderniz text-xl text-white uppercase leading-none mb-1 tracking-tighter">
           {member.name}
         </h4>
