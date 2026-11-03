@@ -121,10 +121,10 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold text-white uppercase font-montserrat">
-                    Kallang Riverside
+                    60 Paya Lebar Road, #06-28 Paya Lebar Square
                   </p>
                   <p className="text-[10px] text-neutral-500 uppercase font-montserrat">
-                    Singapore 338988
+                    Singapore 409051
                   </p>
                 </div>
               </div>

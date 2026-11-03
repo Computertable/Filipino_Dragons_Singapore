@@ -119,7 +119,7 @@ export default function ContactPage({
                 </div>
                 <div className="flex items-center gap-4 text-neutral-600 hover:text-black transition-colors">
                   <MapPin size={20} className="text-yellow-500" />
-                  <span className="font-montserrat text-sm font-medium text-left">Kallang Riverside Park, Singapore</span>
+                  <span className="font-montserrat text-sm font-medium text-left">60 Paya Lebar Road, #06-28 Paya Lebar Square, Singapore 409051</span>
                 </div>
               </div>
             </div>
