@@ -7,6 +7,7 @@ export default function Hero() {
     <section className="relative h-screen w-full bg-(--brand-black) overflow-hidden flex items-center">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
+        // style={{ backgroundImage: "url('/ccwc_3.PNG')" }}
         style={{ backgroundImage: "url('/hero-bg.jpg')" }}
       />
       
